@@ -1,0 +1,143 @@
+# BL0906 / BL0910 ESPHome 外部组件
+
+为 BL0906 和 BL0910 电能计量芯片提供 ESPHome 外部组件支持，包含电压/电流/功率测量、电量统计、校准持久化等功能。
+
+> **注意**：本组件以预编译静态库形式发布，源代码不公开。如需了解内部实现或参与开发，请联系作者。
+
+## 支持的芯片
+
+| 芯片 | 通道数 | 说明 |
+|------|-------|------|
+| BL0906 | 6 | 6 通道电能计量 |
+| BL0910 | 10 | 10 通道电能计量 |
+
+## 支持的平台
+
+预编译库已为以下 ESP-IDF 目标构建（ESP-IDF v5.5.5）：
+
+| 目标 | 状态 |
+|------|------|
+| `esp32c3` | ✅ 已支持 |
+| `esp32` / `esp32s3` / `esp32c6` 等 | ❌ 暂未预编译，如需支持请提交 issue |
+
+## 安装
+
+在 ESPHome 配置中添加 `external_components`：
+
+```yaml
+external_components:
+  - source:
+      type: git
+      url: https://github.com/carrot8848/bl0906_carrot8848
+      ref: main
+    components: [bl0906_carrot8848]
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+```
+
+## 完整示例配置
+
+```yaml
+external_components:
+  - source:
+      type: git
+      url: https://github.com/carrot8848/bl0906_carrot8848
+      ref: main
+    components: [bl0906_carrot8848]
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+spi:
+  - id: spi_bus
+    clk_pin: 18
+    miso_pin: 19
+    mosi_pin: 23
+
+i2c:
+  - id: i2c_bus
+    sda: 21
+    scl: 22
+    scan: true
+
+time:
+  - platform: sntp
+    id: sntp_time
+
+bl0906_carrot8848:
+  id: bl0906_main
+  chip_model: bl0906        # 或 bl0910
+  instance_id: 0x12345678
+  spi_id: spi_bus
+  cs_pin: 5
+  update_interval: 60s
+  freq_adapt: auto
+  transformer_ratio: 2000.0
+  voltage_sampling_mode: transformer   # 或 resistor_divider
+  eeprom_type: 24c02        # EEPROM 型号，可省略（默认 24c02）
+  i2c_id: i2c_bus           # EEPROM 校准存储走 I2C（必填）
+  address: 0x50             # 可省略（默认 0x50）
+
+sensor:
+  - platform: bl0906_carrot8848
+    bl0906_carrot8848_id: bl0906_main
+    voltage:
+      name: "Voltage"
+    frequency:
+      name: "Frequency"
+    temperature:
+      name: "Temperature"
+    ch1:
+      current:
+        name: "CH1 Current"
+      power:
+        name: "CH1 Power"
+    # ch2-ch6 类似
+
+text_sensor:
+  - platform: bl0906_carrot8848
+    bl0906_carrot8848_id: bl0906_main
+    calibration_status:
+      name: "Calibration Status"
+```
+
+> **注意**：组件头文件依赖 `time` 组件，请在配置中至少添加一个 `time:` 平台（如上例 sntp）。
+
+## 配置项说明
+
+### `bl0906_carrot8848` 组件
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `chip_model` | string | 是 | - | `bl0906` 或 `bl0910` |
+| `instance_id` | int | 是 | - | 芯片实例 ID（用于 NVS 命名空间） |
+| `spi_id` | id | 是 | - | SPI 总线 ID |
+| `cs_pin` | pin | 是 | - | SPI CS 引脚 |
+| `freq_adapt` | string | 否 | `auto` | 频率自适应模式 |
+| `transformer_ratio` | float | 否 | `2000.0` | 互感器变比 |
+| `voltage_sampling_mode` | string | 否 | `transformer` | 电压采样模式：`transformer` 或 `resistor_divider` |
+| `eeprom_type` | string | 否 | `24c02` | EEPROM 型号（24c02/24c04/24c08/24c16），校准参数强制从 EEPROM 应用 |
+| `i2c_id` | id | 是 | - | I2C 总线 ID（EEPROM 校准存储） |
+| `address` | int | 否 | `0x50` | EEPROM I2C 地址 |
+
+## 版本兼容性
+
+- **ESPHome**: 2026.6.0 及以上（需要 ESP-IDF 原生构建支持）
+- **ESP-IDF**: v5.x（建议使用 ESPHome 捆绑版本）
+- **Arduino**: 不支持（仅支持 ESP-IDF 框架）
+
+## 问题反馈
+
+- 提交 GitHub Issue 报告问题
+- 请附上 ESPHome 版本、ESP-IDF 版本、目标芯片、配置文件（移除敏感信息）
+
+## 许可证
+
+源代码以专有许可证发布，预编译库可供最终用户在自己的 ESPHome 项目中使用。
+
+Copyright (c) 2026 carrot8848. All rights reserved.

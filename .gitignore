@@ -1,0 +1,15 @@
+# Python 缓存
+__pycache__/
+*.pyc
+
+# IDE / 工具
+.trae/
+.vscode/
+.idea/
+
+# 构建产物
+build/
+sdkconfig.old
+
+# 不接受源码 PR（公开仓库仅发布预编译库）
+*.cpp

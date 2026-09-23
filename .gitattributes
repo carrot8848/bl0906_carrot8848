@@ -1,0 +1,2 @@
+# Git LFS 跟踪预编译静态库文件，避免 git 仓库膨胀
+**/*.a filter=lfs diff=lfs merge=lfs -text
