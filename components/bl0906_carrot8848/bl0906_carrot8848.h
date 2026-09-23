@@ -5,6 +5,7 @@
 #include "esphome/components/text_sensor/text_sensor.h"
 
 // 必须最先包含
+#include "bl0906_api.h"
 #include "bl0906_chip_params.h"
 
 #include "spi_communication_adapter.h"
@@ -79,7 +80,7 @@ struct EnergyPersistenceData {
   uint32_t checksum;
 };
 
-class BL0906Carrot8848 : public PollingComponent {
+class BL0906_API BL0906Carrot8848 : public PollingComponent {
  public:
 
   ~BL0906Carrot8848() {

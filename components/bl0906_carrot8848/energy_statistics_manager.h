@@ -10,6 +10,8 @@
 #include <mutex>
 #include "nvs_flash.h"
 
+#include "bl0906_api.h"
+
 namespace esphome_time = esphome::time;
 
 namespace esphome {
@@ -45,7 +47,7 @@ struct OptimizedEnergyStatistics {
   bool updating;
 };
 
-class EnergyStatisticsManager : public PollingComponent {
+class BL0906_API EnergyStatisticsManager : public PollingComponent {
 public:
   EnergyStatisticsManager(BL0906Carrot8848* parent);
 

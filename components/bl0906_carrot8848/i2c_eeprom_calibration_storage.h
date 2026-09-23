@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "bl0906_api.h"
+
 namespace esphome {
 namespace bl0906_carrot8848 {
 
@@ -39,7 +41,7 @@ struct EEPROMHeader {
   uint8_t reserved;
 } __attribute__((packed));
 
-class I2CEEPROMCalibrationStorage {
+class BL0906_API I2CEEPROMCalibrationStorage {
 public:
   I2CEEPROMCalibrationStorage(i2c::I2CBus *i2c, EEPROMType type, uint8_t address = 0x50);
 

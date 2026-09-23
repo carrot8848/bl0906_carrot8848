@@ -10,6 +10,8 @@
 #include <cstdint>
 #include <cstddef>
 
+#include "bl0906_api.h"
+
 namespace esphome {
 namespace bl0906_carrot8848 {
 
@@ -28,7 +30,7 @@ enum class CommunicationError {
 };
 
 // 具体类,无虚函数
-class SpiCommunicationAdapter : public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW, spi::CLOCK_PHASE_TRAILING, spi::DATA_RATE_1MHZ> {
+class BL0906_API SpiCommunicationAdapter : public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW, spi::CLOCK_PHASE_TRAILING, spi::DATA_RATE_1MHZ> {
 public:
   SpiCommunicationAdapter() = default;
   ~SpiCommunicationAdapter() = default;

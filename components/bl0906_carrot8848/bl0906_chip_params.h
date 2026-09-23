@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdint>
 
+#include "bl0906_api.h"
+
 namespace esphome {
 namespace bl0906_carrot8848 {
 
@@ -51,22 +53,22 @@ struct DataPacket {
 };
 
 // 以下定义均在预编译库 libbl0906_carrot8848.a 中
-extern const ChipParams CHIP_PARAMS[];
+BL0906_API extern const ChipParams CHIP_PARAMS[];
 
-uint8_t get_register_addr(ChipModel chip, CalibRegType type, int channel);
-bool is_valid_calibration_register(ChipModel chip, uint8_t address);
-bool is_valid_register_for_chip(ChipModel chip, uint8_t address);
-CalibRegType get_register_type_by_address(ChipModel chip, uint8_t address);
+BL0906_API uint8_t get_register_addr(ChipModel chip, CalibRegType type, int channel);
+BL0906_API bool is_valid_calibration_register(ChipModel chip, uint8_t address);
+BL0906_API bool is_valid_register_for_chip(ChipModel chip, uint8_t address);
+BL0906_API CalibRegType get_register_type_by_address(ChipModel chip, uint8_t address);
 
-extern const uint8_t V_RMS_ADDR;
-extern const uint8_t FREQUENCY_ADDR;
-extern const uint8_t TEMPERATURE_ADDR;
-extern const uint8_t WATT_SUM_ADDR;
-extern const uint8_t CF_SUM_ADDR;
-extern const uint8_t MODE2_ADDR;
-extern const uint8_t CHGN_V_ADDR;
+BL0906_API extern const uint8_t V_RMS_ADDR;
+BL0906_API extern const uint8_t FREQUENCY_ADDR;
+BL0906_API extern const uint8_t TEMPERATURE_ADDR;
+BL0906_API extern const uint8_t WATT_SUM_ADDR;
+BL0906_API extern const uint8_t CF_SUM_ADDR;
+BL0906_API extern const uint8_t MODE2_ADDR;
+BL0906_API extern const uint8_t CHGN_V_ADDR;
 
-extern const uint32_t MODE2_AC_FREQ_SEL_MASK;
+BL0906_API extern const uint32_t MODE2_AC_FREQ_SEL_MASK;
 
 }  // namespace bl0906_carrot8848
 }  // namespace esphome
