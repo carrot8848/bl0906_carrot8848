@@ -109,6 +109,7 @@ CONFIG_SCHEMA = cv.All(
 )
 
 async def to_code(config):
+    # === BL0906_PREBUILT_LINK_BEGIN === 发布形态专用段, assemble_reference_component.py 组装源码形态时整段剥离
     # 预编译库链接: IDF构建不用外部组件CMakeLists.txt,须以单条-Wl标志注入
     # (单元素不受链接标志排序影响,whole-archive与gc-sections兼容)
     if CORE.target_platform != "esp32":
@@ -128,6 +129,7 @@ async def to_code(config):
             "本组件以预编译二进制发布，请确认组件版本包含该平台的 prebuilt 文件。"
         )
     cg.add_build_flag(f"-Wl,--whole-archive,{lib_path},--no-whole-archive")
+    # === BL0906_PREBUILT_LINK_END ===
 
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)

@@ -30,7 +30,7 @@ enum class EEPROMType : uint8_t {
 };
 
 struct EEPROMHeader {
-  uint32_t magic;        // 0x24C0CA10 + 型号
+  uint32_t magic;        
   uint16_t version;
   uint8_t eeprom_type;
   uint8_t max_instances;
