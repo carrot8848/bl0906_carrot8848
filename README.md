@@ -138,6 +138,14 @@ text_sensor:
 
 ## 许可证
 
-源代码以专有许可证发布，预编译库可供最终用户在自己的 ESPHome 项目中使用。
+本组件（头文件、Python 脚本与预编译静态库）以 [PolyForm Noncommercial 1.0.0](LICENSE) 协议发布：
+
+- **允许**：个人使用、学习、研究，以及在个人非商业 ESPHome 项目中集成（包括刷写自己购买设备的固件）
+- **禁止**：任何商业用途，包括将本组件集成到对外销售的产品中；商业授权请联系作者
+- 本仓库不包含源代码，以预编译库形式分发
+
+以上为中文摘要，具体条款以 [LICENSE](LICENSE)（英文原文）为准。
+
+固件基于 [ESPHome](https://github.com/esphome/esphome) 构建，其 C++ 运行时以 GPLv3 发布，源码可从 ESPHome 官方仓库获取。
 
 Copyright (c) 2026 carrot8848. All rights reserved.
