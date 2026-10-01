@@ -178,15 +178,12 @@ class BL0906_API BL0906Carrot8848 : public PollingComponent {
 
   void set_communication_adapter(std::unique_ptr<SpiCommunicationAdapter> adapter);
 
-  bool write_register_value(uint8_t address, int16_t value);  // 供Number组件使用
-
   float convert_raw_to_value(uint8_t address, int32_t raw_value);  // 唯一数据转换入口
 
   bool turn_off_write_protect();
+  bool turn_on_write_protect();  // 恢复寄存器写保护（0x9E写0x0000）
 
   int32_t send_read_command_and_receive(uint8_t address, bool* success);  // 唯一读取入口,success区分失败与0值
-
-  void apply_calibration_values();
 
   void setup_energy_persistence();
   void save_energy_data();

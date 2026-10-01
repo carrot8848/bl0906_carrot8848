@@ -16,7 +16,7 @@ from esphome.const import (
 )
 
 CODEOWNERS = ["@carrot8848"]
-AUTO_LOAD = ["sensor", "text_sensor"]  # 生产版不包含number组件
+AUTO_LOAD = ["sensor", "text_sensor", "button"]  # 生产版不包含number组件
 MULTI_CONF = True
 
 bl0906_carrot8848_ns = cg.esphome_ns.namespace("bl0906_carrot8848")
@@ -65,6 +65,13 @@ FREQ_ADAPT_ENUM_MAP = {
 VOLTAGE_SAMPLING_ENUM_MAP = {
     "transformer": "esphome::bl0906_carrot8848::VoltageSamplingMode::TRANSFORMER",
     "resistor_divider": "esphome::bl0906_carrot8848::VoltageSamplingMode::RESISTOR_DIVIDER",
+}
+# 按钮功能映射（bl0906_buttons.h 中 Bl0906ButtonAction）
+BUTTON_ACTION_ENUM_MAP = {
+    "reset_energy": "esphome::bl0906_carrot8848::Bl0906ButtonAction::RESET_ENERGY",
+    "save_energy": "esphome::bl0906_carrot8848::Bl0906ButtonAction::SAVE_ENERGY",
+    "diagnose_persistence": "esphome::bl0906_carrot8848::Bl0906ButtonAction::DIAGNOSE_PERSISTENCE",
+    "diagnose_statistics": "esphome::bl0906_carrot8848::Bl0906ButtonAction::DIAGNOSE_STATISTICS",
 }
 
 def validate_energy_statistics_config(config):
