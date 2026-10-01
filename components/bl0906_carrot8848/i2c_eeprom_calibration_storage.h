@@ -48,10 +48,6 @@ public:
   bool init();
   bool read_instance(uint32_t instance_id, std::vector<CalibrationEntry>& entries);
 
-  bool verify();
-  std::vector<uint32_t> get_instance_list();
-  size_t get_max_instances();
-
 private:
   i2c::I2CBus *i2c_;
   uint8_t address_;

@@ -139,20 +139,6 @@ class BL0906_API BL0906Carrot8848 : public PollingComponent {
     return sensors_[row][col];
   }
 
-  void set_channel_sensors(SensorType type, const std::vector<sensor::Sensor*>& sensors) {
-    for (size_t i = 0; i < sensors.size() && i < static_cast<size_t>(MAX_SENSOR_CHANNELS); ++i) {
-      set_sensor(type, sensors[i], i);
-    }
-  }
-
-  std::vector<sensor::Sensor*> get_channel_sensors(SensorType type) const {
-    std::vector<sensor::Sensor*> result;
-    for (int i = 0; i < cached_params_->channel_count; ++i) {
-      result.push_back(get_sensor(type, i));
-    }
-    return result;
-  }
-
   enum class FreqAdaptMode {
     OFF,    // 默认50Hz
     AUTO,   // 自动检测
@@ -164,9 +150,6 @@ class BL0906_API BL0906Carrot8848 : public PollingComponent {
     cached_params_ = &CHIP_PARAMS[static_cast<uint8_t>(model)];
     ESP_LOGI("bl0906_carrot8848", "设置芯片型号: %s", cached_params_->chip_name);
   }
-
-  ChipModel get_chip_model() const { return chip_model_; }
-  const ChipParams& get_chip_params() const { return *cached_params_; }
 
   void loop() override;
   void update();
@@ -189,7 +172,6 @@ class BL0906_API BL0906Carrot8848 : public PollingComponent {
   void save_energy_data();
   void load_energy_data();
   void reset_energy_data();
-  void erase_energy_nvs_namespace();  // 仅擦除电量数据,不动校准
 
   uint32_t calculate_data_checksum(const EnergyPersistenceData& data);
   bool validate_persistence_data(const EnergyPersistenceData& data, const char* context);  // "save"查合理性,"load"加查magic/version/id/checksum
@@ -199,12 +181,8 @@ class BL0906_API BL0906Carrot8848 : public PollingComponent {
 
   void build_nvs_namespace_name(char *buf, size_t buf_size) const;
 
-  uint32_t get_save_count() const { return current_save_count_; }
-  void reset_save_count() { current_save_count_ = 0; }
-
   void set_time_component(esphome_time::RealTimeClock *time_comp);
   void set_statistics_sensor(StatisticsSensorType type, sensor::Sensor *sensor, int channel = 0);
-  EnergyStatisticsManager* get_energy_statistics_manager() const { return energy_stats_manager_.get(); }
 
   void set_calibration_status_text_sensor(text_sensor::TextSensor *sensor) { calibration_status_text_sensor_ = sensor; }
   void update_calibration_status();
@@ -216,7 +194,6 @@ class BL0906_API BL0906Carrot8848 : public PollingComponent {
   void diagnose_energy_statistics();
 
   void set_instance_id(uint32_t id);
-  uint32_t get_instance_id() const;
   bool validate_instance_id_for_chip(uint32_t id) const;
 
   void set_eeprom_type(EEPROMType type) { eeprom_type_ = type; }
