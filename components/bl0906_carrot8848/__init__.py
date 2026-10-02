@@ -1,4 +1,4 @@
-"""BL0906 Carrot8848 - 简化版电能计量组件（仅SPI通信，预编译库发布）"""
+"""BL0906 Carrot8848 - 电能计量组件"""
 import os
 
 import esphome.codegen as cg
@@ -16,7 +16,7 @@ from esphome.const import (
 )
 
 CODEOWNERS = ["@carrot8848"]
-AUTO_LOAD = ["sensor", "text_sensor", "button"]  # 生产版不包含number组件
+AUTO_LOAD = ["sensor", "text_sensor", "button"]  
 MULTI_CONF = True
 
 bl0906_carrot8848_ns = cg.esphome_ns.namespace("bl0906_carrot8848")
@@ -117,8 +117,6 @@ CONFIG_SCHEMA = cv.All(
 
 async def to_code(config):
     # === BL0906_PREBUILT_LINK_BEGIN === 发布形态专用段, assemble_reference_component.py 组装源码形态时整段剥离
-    # 预编译库链接: IDF构建不用外部组件CMakeLists.txt,须以单条-Wl标志注入
-    # (单元素不受链接标志排序影响,whole-archive与gc-sections兼容)
     if CORE.target_platform != "esp32":
         raise cv.Invalid(
             "bl0906_carrot8848 组件以预编译库发布，当前仅支持 ESP32 平台"

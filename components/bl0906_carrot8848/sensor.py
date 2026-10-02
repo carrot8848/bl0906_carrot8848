@@ -21,6 +21,7 @@ def build_channel_sensor_schema():
             accuracy_decimals=config["accuracy"],
             device_class=config["device_class"],
             state_class=config["state_class"],
+            icon=config["icon"],
         )
     return cv.Schema(schema_dict)
 
@@ -33,6 +34,7 @@ def build_config_schema():
             accuracy_decimals=config["accuracy"],
             device_class=config["device_class"],
             state_class=config["state_class"],
+            icon=config["icon"],
         )
 
     # 通道数在C++层面按芯片型号验证

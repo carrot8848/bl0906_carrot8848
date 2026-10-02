@@ -80,36 +80,42 @@ DEVICE_PROPERTY_TEMPLATES = {
         "accuracy": 1,
         "device_class": DEVICE_CLASS_VOLTAGE,
         "state_class": STATE_CLASS_MEASUREMENT,
+        "icon": "mdi:lightning-bolt-outline",
     },
     "current": {
         "unit": UNIT_AMPERE,
         "accuracy": 3,
         "device_class": DEVICE_CLASS_CURRENT,
         "state_class": STATE_CLASS_MEASUREMENT,
+        "icon": "mdi:current-ac",
     },
     "power": {
         "unit": UNIT_WATT,
         "accuracy": 1,
         "device_class": DEVICE_CLASS_POWER,
         "state_class": STATE_CLASS_MEASUREMENT,
+        "icon": "mdi:flash",
     },
     "energy": {
         "unit": UNIT_KILOWATT_HOURS,
         "accuracy": 3,
         "device_class": DEVICE_CLASS_ENERGY,
         "state_class": STATE_CLASS_TOTAL_INCREASING,
+        "icon": "mdi:lightning-bolt",
     },
     "frequency": {
         "unit": UNIT_HERTZ,
         "accuracy": 1,
         "device_class": DEVICE_CLASS_FREQUENCY,
         "state_class": STATE_CLASS_MEASUREMENT,
+        "icon": "mdi:sine-wave",
     },
     "temperature": {
         "unit": UNIT_CELSIUS,
         "accuracy": 1,
         "device_class": DEVICE_CLASS_TEMPERATURE,
         "state_class": STATE_CLASS_MEASUREMENT,
+        "icon": "mdi:thermometer",
     },
 }
 
@@ -128,35 +134,43 @@ GLOBAL_SENSOR_CONFIGS = {
     },
     "power_sum": {
         "type": "POWER_SUM",
-        **DEVICE_PROPERTY_TEMPLATES["power"]
+        **DEVICE_PROPERTY_TEMPLATES["power"],
+        "icon": "mdi:sigma",
     },
     "energy_sum": {
         "type": "ENERGY_SUM",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:sigma",
     },
     "total_energy_sum": {
         "type": "TOTAL_ENERGY_SUM",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:sigma",
     },
     "yesterday_total_energy": {
         "type": "YESTERDAY_TOTAL_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-minus",
     },
     "today_total_energy": {
         "type": "TODAY_TOTAL_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-today",
     },
     "week_total_energy": {
         "type": "WEEK_TOTAL_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-week",
     },
     "month_total_energy": {
         "type": "MONTH_TOTAL_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-month",
     },
     "year_total_energy": {
         "type": "YEAR_TOTAL_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar",
     },
 }
 
@@ -175,27 +189,33 @@ CHANNEL_SENSOR_TEMPLATES = {
     },
     "total_energy": {
         "type": "TOTAL_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:counter",
     },
     "yesterday_energy": {
         "type": "YESTERDAY_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-minus",
     },
     "today_energy": {
         "type": "TODAY_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-today",
     },
     "week_energy": {
         "type": "WEEK_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-week",
     },
     "month_energy": {
         "type": "MONTH_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar-month",
     },
     "year_energy": {
         "type": "YEAR_ENERGY",
-        **DEVICE_PROPERTY_TEMPLATES["energy"]
+        **DEVICE_PROPERTY_TEMPLATES["energy"],
+        "icon": "mdi:calendar",
     },
 }
 

@@ -10,8 +10,6 @@ enum class VoltageSamplingMode {
   RESISTOR_DIVIDER
 };
 
-// 物理与校准系数常量：仅库内使用，已降级为隐藏符号（-fvisibility=hidden），
-// 不对固件侧导出；如需对外暴露请加 BL0906_API 并更新符号校验清单
 extern const float Vref;   // V
 extern const int Gain_V;   // 1, 2, 8, 16
 extern const int Gain_I;   // 1, 2, 8, 16
