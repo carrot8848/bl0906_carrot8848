@@ -2,7 +2,22 @@
 
 为 BL0906 和 BL0910 电能计量芯片提供 ESPHome 外部组件支持，包含电压/电流/功率测量、电量统计、校准持久化等功能。
 
-**注意：本组件专门用于本店售卖的电量计量模块的external component,需要特殊的硬件配置以及校准过程。**
+<p align="center">
+  <img src="https://raw.githubusercontent.com/carrot8848/ESPHome-YAML/main/docs/modules-overview.png" width="420" alt="电量计量模块产品全图">
+</p>
+
+**注意：本组件是本店售卖的电量计量模块的专用 external component，需要特殊的硬件配置以及校准过程。**
+
+## 购买成品
+
+不想自己动手焊接与校准？可直接购买已烧录固件并完成出厂校准的成品模块：
+
+| 产品 | 购买链接 |
+|------|---------|
+| 6 通道电量计量模块 | [淘宝购买](https://item.taobao.com/item.htm?id=793797215362) |
+| 10 通道电量计量模块 | [淘宝购买](https://item.taobao.com/item.htm?id=999413514343) |
+| 16 通道电量计量模块 | [淘宝购买](https://item.taobao.com/item.htm?id=999413514343) |
+| 3×6 通道电量计量模块 | [淘宝购买](https://item.taobao.com/item.htm?id=971222114086) |
 
 ## 支持的芯片
 
@@ -23,7 +38,16 @@
 
 在 ESPHome 配置中添加 `external_components`：
 
-模块参考yaml配置请参考另外的仓库：
+```yaml
+external_components:
+  - source:
+      type: git
+      url: https://github.com/carrot8848/bl0906_carrot8848
+      ref: main
+    components: [bl0906_carrot8848]
+```
+
+模块参考 yaml 配置请参考另外的仓库：[ESPHome-YAML](https://github.com/carrot8848/ESPHome-YAML)
 
 ## 配置项说明
 
