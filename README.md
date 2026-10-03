@@ -68,7 +68,7 @@ external_components:
 
 ## 版本兼容性
 
-- **ESPHome**: 2026.6.0 及以上（需要 ESP-IDF 原生构建支持）
+- **ESPHome**: 2026.8.0 及以上（实测 2026.8.2 / 2026.9.1 编译通过）
 - **ESP-IDF**: v5.x（建议使用 ESPHome 捆绑版本）
 - **Arduino**: 不支持（仅支持 ESP-IDF 框架）
 
